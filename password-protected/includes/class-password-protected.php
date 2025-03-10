@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  * @author     Your Name <email@example.com>
  */
-class Password_Protected {
+class PPPTNSE {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Password_Protected {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Password_Protected_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      PPPTNSE_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -86,10 +86,10 @@ class Password_Protected {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Password_Protected_Loader. Orchestrates the hooks of the plugin.
-	 * - Password_Protected_i18n. Defines internationalization functionality.
-	 * - Password_Protected_Admin. Defines all hooks for the admin area.
-	 * - Password_Protected_Public. Defines all hooks for the public side of the site.
+	 * - PPPTNSE_Loader. Orchestrates the hooks of the plugin.
+	 * - PPPTNSE_i18n. Defines internationalization functionality.
+	 * - PPPTNSE_Admin. Defines all hooks for the admin area.
+	 * - PPPTNSE_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -122,14 +122,14 @@ class Password_Protected {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-password-protected-public.php';
 
-		$this->loader = new Password_Protected_Loader();
+		$this->loader = new PPPTNSE_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Password_Protected_i18n class in order to set the domain and to register the hook
+	 * Uses the PPPTNSE_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +137,7 @@ class Password_Protected {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Password_Protected_i18n();
+		$plugin_i18n = new PPPTNSE_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +152,7 @@ class Password_Protected {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Password_Protected_Admin( $this->get_password_protected(), $this->get_version() );
+		$plugin_admin = new PPPTNSE_Admin( $this->get_password_protected(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,7 +168,7 @@ class Password_Protected {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Password_Protected_Public( $this->get_password_protected(), $this->get_version() );
+		$plugin_public = new PPPTNSE_Public( $this->get_password_protected(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -199,7 +199,7 @@ class Password_Protected {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Password_Protected_Loader    Orchestrates the hooks of the plugin.
+	 * @return    PPPTNSE_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

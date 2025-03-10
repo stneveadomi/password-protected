@@ -10,7 +10,7 @@
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           Password_Protected
+ * @package           PPPTNSE
  *
  * @wordpress-plugin
  * Plugin Name:       Password Protected Plugin Thats Not Stupidly Expensive
@@ -45,7 +45,7 @@ define( 'PASSWORD_PROTECTED_VERSION', '1.0.0' );
  */
 function activate_password_protected() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-password-protected-activator.php';
-	Password_Protected_Activator::activate();
+	PPPTNSE_Activator::activate();
 }
 
 /**
@@ -54,7 +54,7 @@ function activate_password_protected() {
  */
 function deactivate_password_protected() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-password-protected-deactivator.php';
-	Password_Protected_Deactivator::deactivate();
+	PPPTNSE_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_password_protected' );
@@ -77,7 +77,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-password-protected.php';
  */
 function run_password_protected() {
 
-	$plugin = new Password_Protected();
+	$plugin = new PPPTNSE();
 	$plugin->run();
 
 }

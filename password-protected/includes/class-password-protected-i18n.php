@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  * @author     Your Name <email@example.com>
  */
-class Password_Protected_i18n {
+class PPPTNSE_i18n {
 
 
 	/**

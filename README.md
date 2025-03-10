@@ -25,7 +25,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 * rename files from `password-protected` to `example-me`
 * change `password_protected` to `example_me`
 * change `password-protected` to `example-me`
-* change `Password_Protected` to `Example_Me`
+* change `PPPTNSE` to `Example_Me`
 * change `PASSWORD_PROTECTED_` to `EXAMPLE_ME_`
 
 It's safe to activate the plugin at this point. Because the Boilerplate has no real functionality there will be no menu items, meta boxes, or custom post types added until you write the code.
@@ -74,7 +74,7 @@ Note that if you include your own classes, or third-party libraries, there are t
 * `password-protected/admin` is for all admin-specific functionality
 * `password-protected/public` is for all public-facing functionality
 
-Note that previous versions of the Boilerplate did not include `Password_Protected_Loader` but this class is used to register all filters and actions with WordPress.
+Note that previous versions of the Boilerplate did not include `PPPTNSE_Loader` but this class is used to register all filters and actions with WordPress.
 
 The example code provided shows how to register your hooks with the Loader class.
 

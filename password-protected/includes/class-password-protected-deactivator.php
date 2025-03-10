@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  * @author     Your Name <email@example.com>
  */
-class Password_Protected_Deactivator {
+class PPPTNSE_Deactivator {
 
 	/**
 	 * Short Description. (use period)

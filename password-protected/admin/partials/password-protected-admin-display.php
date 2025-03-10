@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/admin/partials
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/admin/partials
  */
 ?>
 

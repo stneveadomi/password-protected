@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/includes
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/includes
  * @author     Your Name <email@example.com>
  */
-class Password_Protected_Loader {
+class PPPTNSE_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/public
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Password_Protected
- * @subpackage Password_Protected/public
+ * @package    PPPTNSE
+ * @subpackage PPPTNSE/public
  * @author     Your Name <email@example.com>
  */
-class Password_Protected_Public {
+class PPPTNSE_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,10 +65,10 @@ class Password_Protected_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Password_Protected_Loader as all of the hooks are defined
+		 * defined in PPPTNSE_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Password_Protected_Loader will then create the relationship
+		 * The PPPTNSE_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +88,10 @@ class Password_Protected_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Password_Protected_Loader as all of the hooks are defined
+		 * defined in PPPTNSE_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Password_Protected_Loader will then create the relationship
+		 * The PPPTNSE_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Password_Protected
+ * @package    PPPTNSE
  */
 
 // If uninstall not called from WordPress, then exit.
