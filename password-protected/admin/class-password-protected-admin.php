@@ -51,7 +51,6 @@ class PPPTNSE_Admin {
 
 		$this->password_protected = $password_protected;
 		$this->version = $version;
-		$this->ppptnse_add_admin_menu();
 
 	}
 
