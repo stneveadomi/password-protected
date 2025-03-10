@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              http://neveadomi.com
  * @since             1.0.0
  * @package           PPPTNSE
  *
@@ -22,9 +22,6 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       password-protected
- * Domain Path:       /languages
- * GitHub Plugin URI: stneveadomi/password-protected
- * GitHub Plugin URI: https://github.com/stneveadomi/password-protected
  */
 
 // If this file is called directly, abort.
