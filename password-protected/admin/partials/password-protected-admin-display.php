@@ -16,14 +16,14 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <?php
 global $wpdb;
-$table_name = $wpdb->prefix . 'passwords';
+$table_name = $wpdb->prefix . 'passwords_protected';
 
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['path']) && isset($_POST['password'])) {
-    $path = sanitize_text_field($_POST['path']);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['postId']) && isset($_POST['password'])) {
+    $postId = intval($_POST['postId']);
     $password = sanitize_text_field($_POST['password']);
     $wpdb->insert($table_name, array(
-        'path' => $path,
+        'post_id' => $postId,
         'password' => $password,
         'created_at' => current_time('mysql')
     ));
@@ -35,8 +35,15 @@ $passwords = $wpdb->get_results("SELECT * FROM $table_name");
 ?>
 
 <form method="post" action="">
-    <label for="path">Path:</label>
-    <input type="text" id="path" name="path" required>
+    <label for="postId">Post:</label>
+    <select id="postId" name="postId" required>
+        <?php
+        $posts = get_posts(array('numberposts' => -1));
+        foreach ($posts as $post) {
+            echo '<option value="' . esc_attr($post->ID) . '">' . esc_html($post->post_title) . '</option>';
+        }
+        ?>
+    </select>
     <label for="password">Password:</label>
     <input type="text" id="password" name="password" required>
     <input type="submit" value="Add Password">
@@ -45,11 +52,11 @@ $passwords = $wpdb->get_results("SELECT * FROM $table_name");
 <?php
 if (!empty($passwords)) {
     echo '<table>';
-    echo '<tr><th>ID</th><th>Path</th><th>Password</th><th>Created At</th></tr>';
+    echo '<tr><th>ID</th><th>Post ID</th><th>Password</th><th>Created At</th></tr>';
     foreach ($passwords as $password) {
         echo '<tr>';
         echo '<td>' . esc_html($password->id) . '</td>';
-        echo '<td>' . esc_html($password->path) . '</td>';
+        echo '<td>' . esc_html($password->post_id) . '</td>';
         echo '<td>' . esc_html($password->password) . '</td>';
         echo '<td>' . esc_html($password->created_at) . '</td>';
         echo '</tr>';
