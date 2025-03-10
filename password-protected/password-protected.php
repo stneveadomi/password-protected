@@ -13,7 +13,7 @@
  * @package           Password_Protected
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
+ * Plugin Name:       Password Protected Plugin Thats Not Stupidly Expensive
  * Plugin URI:        http://example.com/password-protected-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
