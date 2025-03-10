@@ -51,7 +51,23 @@ class PPPTNSE_Admin {
 
 		$this->password_protected = $password_protected;
 		$this->version = $version;
+		$this->ppptnse_add_admin_menu();
 
+	}
+
+	public function ppptnse_add_admin_menu() {
+		add_submenu_page(
+			'tools.php', // Parent slug
+			'Password Protected', // Page title
+			'Password Protected', // Menu title
+			'manage_options', // Capability
+			'password-protected', // Menu slug
+			'ppptnse_display_admin_page' // Function to display the page
+		);
+	}
+	
+	public function ppptnse_display_admin_page() {
+		include plugin_dir_path(__FILE__) . 'partials/password-protected-admin-display.php';
 	}
 
 	/**
@@ -74,7 +90,6 @@ class PPPTNSE_Admin {
 		 */
 
 		wp_enqueue_style( $this->password_protected, plugin_dir_url( __FILE__ ) . 'css/password-protected-admin.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
