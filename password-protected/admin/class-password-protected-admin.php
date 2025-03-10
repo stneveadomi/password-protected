@@ -61,7 +61,7 @@ class PPPTNSE_Admin {
 			'Password Protected', // Menu title
 			'manage_options', // Capability
 			'password-protected', // Menu slug
-			'ppptnse_display_admin_page' // Function to display the page
+			array($this, 'ppptnse_display_admin_page') // Function to display the page
 		);
 	}
 	
