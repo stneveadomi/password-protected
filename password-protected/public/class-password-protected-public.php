@@ -110,23 +110,23 @@ class PPPTNSE_Public {
 		return $wpdb->get_col($query);
 	}
 
-	public function check_if_password_needed($template) {
-		if ($this->is_password_check_needed()) {
+	// public function check_if_password_needed($template) {
+	// 	if ($this->is_password_check_needed()) {
 			
-			$page_id = $template->ID;
-			$passwords = $this->get_passwords_by_page_id($page_id);
+	// 		$page_id = $template->ID;
+	// 		$passwords = $this->get_passwords_by_page_id($page_id);
 
-			if (!empty($passwords)) {
-				if (isset($_COOKIE['password_protected_password'])) {
-					$cookie_password = $_COOKIE['password_protected_password'];
-					if (!in_array($cookie_password, $passwords)) {
-						$template = plugin_dir_path(dirname(__FILE__)) . 'public/partials/no-content-template.php';
-					}
-				}
-			}
-		}
-		return $template;
-	}
+	// 		if (!empty($passwords)) {
+	// 			if (isset($_COOKIE['password_protected_password'])) {
+	// 				$cookie_password = $_COOKIE['password_protected_password'];
+	// 				if (!in_array($cookie_password, $passwords)) {
+	// 					$template = plugin_dir_path(dirname(__FILE__)) . 'public/partials/no-content-template.php';
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	return $template;
+	// }
 
 	public function filter_pages($pages) {
 		

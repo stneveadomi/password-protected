@@ -150,7 +150,6 @@ class PPPTNSE {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_filter( 'template_include', $plugin_public, 'check_if_password_needed');
 
 		$this->loader->add_filter('get_pages', $plugin_public, 'filter_pages');
 		$this->loader->add_filter('posts_results', $plugin_public, 'filter_posts', 99,  2);
