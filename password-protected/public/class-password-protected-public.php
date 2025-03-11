@@ -170,6 +170,27 @@ class PPPTNSE_Public {
 		return array_values($pages);
 	}
 
+	public function filter_content($content) {
+		if (in_the_loop() && is_main_query() ) {
+			if ($this->is_password_check_needed()) {
+				global $post;
+				$passwords = $this->get_passwords_by_page_id($post->ID);
+
+				if (!empty($passwords)) {
+					if (isset($_COOKIE['password_protected_password'])) {
+						$cookie_password = $_COOKIE['password_protected_password'];
+						if (!in_array($cookie_password, $passwords)) {
+							return __('This content is password protected. Please enter the password to view it.', 'password-protected');
+						}
+					} else {
+						return __('This content is password protected. Please enter the password to view it.', 'password-protected');
+					}
+				}
+			}
+		}
+		return $content;
+	}
+
 	public function filter_posts($posts, $queries) {
 		return $this->filter_pages($posts);
 	}

@@ -154,6 +154,7 @@ class PPPTNSE {
 		$this->loader->add_filter('get_pages', $plugin_public, 'filter_pages');
 		$this->loader->add_filter('the_posts', $plugin_public, 'filter_posts', 99,  2);
 		$this->loader->add_filter('the_post', $plugin_public, 'filter_post');
+		$this->loader->add_filter('the_content', $plugin_public, 'filter_content');
 	}
 
 
