@@ -52,7 +52,7 @@ class PPPTNSE_Public {
 		$this->password_protected = $password_protected;
 		$this->version = $version;
 		add_shortcode('pp_submit_password', array($this, 'submit_password_shortcode'));
-		
+		add_action('template_redirect', array($this, 'handle_form_submission'));
 	}
 
 	/**
@@ -101,16 +101,18 @@ class PPPTNSE_Public {
 
 	}
 
-	public function submit_password_shortcode() {
-		
+	public function handle_form_submission() {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_password'])) {
 			$post_password = sanitize_text_field($_POST['post_password']);
-
 			setcookie('password_protected_password', $post_password, time() + 864000, '/');
-			wp_redirect(home_url(), 302);
+			wp_redirect($_POST['redirect_url'], status: 302);
 			exit;
 		}
-	
+	}
+
+	public function submit_password_shortcode() {
+		
+		
 		ob_start();
 		?>
 		<?php if (isset($_COOKIE['password_protected_password'])): ?>
@@ -121,6 +123,7 @@ class PPPTNSE_Public {
 			<label for="post_password">Enter Password:</label>
 			<input type="password" name="post_password" id="post_password" required>
 			<input type="submit" value="Submit">
+			<input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
 		</form>
 		<?php
 		return ob_get_clean();
