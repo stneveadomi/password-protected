@@ -38,7 +38,11 @@ $passwords = $wpdb->get_results("SELECT * FROM $table_name");
     <label for="postId">Post:</label>
     <select id="postId" name="postId" required>
         <?php
-        $posts = get_posts(array('numberposts' => -1));
+        $posts = get_posts(array(
+            'numberposts' => -1,
+            'post_type' => array('post', 'page'),
+            'post_status' => array('publish', 'private', 'password')
+        ));
         foreach ($posts as $post) {
             echo '<option value="' . esc_attr($post->ID) . '">' . esc_html($post->post_title) . '</option>';
         }
