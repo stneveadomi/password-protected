@@ -129,7 +129,9 @@ class PPPTNSE_Public {
 	}
 
 	public function filter_pages($pages) {
-		foreach ($pages as $key => $page) {
+		
+		for($i = count($pages) - 1; $i >= 0; $i--) {
+			$page = $pages[$i];
 			if ($this->is_password_check_needed()) {
 				$passwords = $this->get_passwords_by_page_id($page->ID);
 
@@ -137,15 +139,15 @@ class PPPTNSE_Public {
 					if (isset($_COOKIE['password_protected_password'])) {
 						$cookie_password = $_COOKIE['password_protected_password'];
 						if (!in_array($cookie_password, $passwords)) {
-							unset($pages[$key]);
+							unset($pages[$i]);
 						}
 					} else {
-						unset($pages[$key]);
+						unset($pages[$i]);
 					}
 				}
 			}
 		}
-		return $pages;
+		return array_values($pages);
 	}
 
 	public function filter_posts($args) {
