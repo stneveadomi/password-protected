@@ -106,6 +106,7 @@ class PPPTNSE_Public {
 			$post_password = sanitize_text_field($_POST['post_password']);
 	
 			setcookie('password_protected_password', $post_password, time() + 864000, '/');
+			wp_redirect($_SERVER['REQUEST_URI']);
 			exit;
 		}
 	
