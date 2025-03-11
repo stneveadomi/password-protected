@@ -102,15 +102,16 @@ class PPPTNSE_Public {
 	}
 
 	public function submit_password_shortcode() {
-		ob_start();
+		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_password'])) {
 			$post_password = sanitize_text_field($_POST['post_password']);
 
 			setcookie('password_protected_password', $post_password, time() + 864000, '/');
+			wp_redirect(home_url(), 302);
 			exit;
 		}
 	
-		
+		ob_start();
 		?>
 		<?php if (isset($_COOKIE['password_protected_password'])): ?>
 			<p>Password: <?php echo htmlspecialchars($_COOKIE['password_protected_password']); ?></p>
