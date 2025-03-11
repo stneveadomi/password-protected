@@ -51,7 +51,8 @@ class PPPTNSE_Public {
 
 		$this->password_protected = $password_protected;
 		$this->version = $version;
-
+		add_shortcode('submit_password', array($this, 'submit_password_shortcode'));
+		
 	}
 
 	/**
