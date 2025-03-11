@@ -100,14 +100,22 @@ class PPPTNSE_Public {
 
 	}
 
-	public function check_if_password_needed($template) {
-		if (!is_user_logged_in() && !is_page('login')) {
-			global $wpdb;
-			$page_id = get_the_ID();
-			$query = $wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}password_protected WHERE page_id = %d", $page_id);
-			$passwords = $wpdb->get_col($query);
+	public function is_password_check_needed() {
+		return !is_user_logged_in() && !is_page('login');
+	}
 
-			if ($passwords > 0) {
+	private function get_passwords_by_page_id($page_id) {
+		global $wpdb;
+		$query = $wpdb->prepare("SELECT password FROM {$wpdb->prefix}password_protected WHERE page_id = %d", $page_id);
+		return $wpdb->get_col($query);
+	}
+
+	public function check_if_password_needed($template) {
+		if ($this->is_password_check_needed()) {
+			$page_id = get_the_ID();
+			$passwords = $this->get_passwords_by_page_id($page_id);
+
+			if (!empty($passwords)) {
 				if (isset($_COOKIE['password_protected_password'])) {
 					$cookie_password = $_COOKIE['password_protected_password'];
 					if (!in_array($cookie_password, $passwords)) {
@@ -117,6 +125,27 @@ class PPPTNSE_Public {
 			}
 		}
 		return $template;
+	}
+
+	public function filter_pages($args = array()) {
+		$pages = get_pages($args);
+		foreach ($pages as $key => $page) {
+			if ($this->is_password_check_needed()) {
+				$passwords = $this->get_passwords_by_page_id($page->ID);
+
+				if (!empty($passwords)) {
+					if (isset($_COOKIE['password_protected_password'])) {
+						$cookie_password = $_COOKIE['password_protected_password'];
+						if (!in_array($cookie_password, $passwords)) {
+							unset($pages[$key]);
+						}
+					} else {
+						unset($pages[$key]);
+					}
+				}
+			}
+		}
+		return $pages;
 	}
 
 }
