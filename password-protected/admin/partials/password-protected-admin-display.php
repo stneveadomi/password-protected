@@ -16,7 +16,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <?php
 global $wpdb;
-$table_name = $wpdb->prefix . 'passwords_protected';
+$table_name = $wpdb->prefix . 'password_protected';
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['postId']) && isset($_POST['password'])) {
