@@ -100,4 +100,23 @@ class PPPTNSE_Public {
 
 	}
 
+	public function check_if_password_needed($template) {
+		if (!is_user_logged_in() && !is_page('login')) {
+			global $wpdb;
+			$page_id = get_the_ID();
+			$query = $wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}password_protected WHERE page_id = %d", $page_id);
+			$passwords = $wpdb->get_col($query);
+
+			if ($passwords > 0) {
+				if (isset($_COOKIE['password_protected_password'])) {
+					$cookie_password = $_COOKIE['password_protected_password'];
+					if (!in_array($cookie_password, $passwords)) {
+						$template = plugin_dir_path(dirname(__FILE__)) . 'public/partials/no-content-template.php';
+					}
+				}
+			}
+		}
+		return $template;
+	}
+
 }
