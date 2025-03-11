@@ -127,8 +127,7 @@ class PPPTNSE_Public {
 		return $template;
 	}
 
-	public function filter_pages($args = array()) {
-		$pages = get_pages($args);
+	public function filter_pages($pages) {
 		foreach ($pages as $key => $page) {
 			if ($this->is_password_check_needed()) {
 				$passwords = $this->get_passwords_by_page_id($page->ID);
