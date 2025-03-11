@@ -51,7 +51,7 @@ class PPPTNSE_Public {
 
 		$this->password_protected = $password_protected;
 		$this->version = $version;
-		add_shortcode('submit_password', array($this, 'submit_password_shortcode'));
+		add_shortcode('pp_submit_password', array($this, 'submit_password_shortcode'));
 		
 	}
 
@@ -101,6 +101,29 @@ class PPPTNSE_Public {
 
 	}
 
+	function submit_password_shortcode() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_password'])) {
+			$post_password = sanitize_text_field($_POST['post_password']);
+	
+			setcookie('password_protected_password', $post_password, time() + 864000, '/');
+			exit;
+		}
+	
+		ob_start();
+		?>
+		<?php if (isset($_COOKIE['password_protected_password'])): ?>
+			<p>Password: <?php echo htmlspecialchars($_COOKIE['password_protected_password']); ?></p>
+			<p>Expires: <?php echo date('Y-m-d H:i:s', $_COOKIE['password_protected_password'] + 864000); ?></p>
+		<?php endif; ?>
+		<form method="post" action="">
+			<label for="post_password">Enter Password:</label>
+			<input type="password" name="post_password" id="post_password" required>
+			<input type="submit" value="Submit">
+		</form>
+		<?php
+		return ob_get_clean();
+	}
+
 	public function is_password_check_needed() {
 		return !is_user_logged_in() && !is_page('login');
 	}
@@ -110,24 +133,6 @@ class PPPTNSE_Public {
 		$query = $wpdb->prepare("SELECT password FROM {$wpdb->prefix}password_protected WHERE post_id = %d", $page_id);
 		return $wpdb->get_col($query);
 	}
-
-	// public function check_if_password_needed($template) {
-	// 	if ($this->is_password_check_needed()) {
-			
-	// 		$page_id = $template->ID;
-	// 		$passwords = $this->get_passwords_by_page_id($page_id);
-
-	// 		if (!empty($passwords)) {
-	// 			if (isset($_COOKIE['password_protected_password'])) {
-	// 				$cookie_password = $_COOKIE['password_protected_password'];
-	// 				if (!in_array($cookie_password, $passwords)) {
-	// 					$template = plugin_dir_path(dirname(__FILE__)) . 'public/partials/no-content-template.php';
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// 	return $template;
-	// }
 
 	public function filter_post($post) {
 		if ($this->is_password_check_needed()) {
