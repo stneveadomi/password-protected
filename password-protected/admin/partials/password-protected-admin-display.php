@@ -29,6 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['postId']) && isset($_P
     ));
 }
 
+// Handle deletion
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = intval($_POST['delete_id']);
+    $wpdb->delete($table_name, array('id' => $delete_id));
+}
+
 // Fetch passwords
 $passwords = $wpdb->get_results("SELECT * FROM $table_name");
 
@@ -56,7 +62,7 @@ $passwords = $wpdb->get_results("SELECT * FROM $table_name");
 <?php
 if (!empty($passwords)) {
     echo '<table>';
-    echo '<tr><th>ID</th><th>Post ID</th><th>Password</th><th>Created At</th></tr>';
+    echo '<tr><th>ID</th><th>Post ID</th><th>Post Title</th><th>Password</th><th>Created At</th><th>Action</th></tr>';
     foreach ($passwords as $password) {
         echo '<tr>';
         echo '<td>' . esc_html($password->id) . '</td>';
@@ -65,6 +71,14 @@ if (!empty($passwords)) {
         echo '<td>' . esc_html($post_title) . '</td>';
         echo '<td>' . esc_html($password->password) . '</td>';
         echo '<td>' . esc_html($password->created_at) . '</td>';
+        echo '<td>
+                <form method="post" action="" style="display:inline;">
+                    <input type="hidden" name="delete_id" value="' . esc_attr($password->id) . '">
+                    <button type="submit" style="background:none;border:none;color:red;cursor:pointer;">
+                        <span class="dashicons dashicons-trash"></span>
+                    </button>
+                </form>
+              </td>';
         echo '</tr>';
     }
     echo '</table>';
