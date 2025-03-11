@@ -128,6 +128,26 @@ class PPPTNSE_Public {
 	// 	return $template;
 	// }
 
+	public function filter_post($post) {
+		if ($this->is_password_check_needed()) {
+			$passwords = $this->get_passwords_by_page_id($post->ID);
+
+			if (!empty($passwords)) {
+				if (isset($_COOKIE['password_protected_password'])) {
+					$cookie_password = $_COOKIE['password_protected_password'];
+					if (!in_array($cookie_password, $passwords)) {
+						wp_redirect(site_url('login'));
+						exit;
+					}
+				} else {
+					wp_redirect(site_url('login'));
+					exit;
+				}
+			}
+		}
+		return $post;
+	}
+
 	public function filter_pages($pages) {
 		
 		for($i = count($pages) - 1; $i >= 0; $i--) {
