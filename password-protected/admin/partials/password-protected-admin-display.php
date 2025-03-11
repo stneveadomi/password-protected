@@ -61,6 +61,8 @@ if (!empty($passwords)) {
         echo '<tr>';
         echo '<td>' . esc_html($password->id) . '</td>';
         echo '<td>' . esc_html($password->post_id) . '</td>';
+        $post_title = get_the_title($password->post_id);
+        echo '<td>' . esc_html($post_title) . '</td>';
         echo '<td>' . esc_html($password->password) . '</td>';
         echo '<td>' . esc_html($password->created_at) . '</td>';
         echo '</tr>';
