@@ -147,7 +147,8 @@ class PPPTNSE_Public {
 		return $pages;
 	}
 
-	public function filter_posts($posts, $query) {
+	public function filter_posts($args) {
+		$posts = $args[0];
 		return $this->filter_pages($posts);
 	}
 
