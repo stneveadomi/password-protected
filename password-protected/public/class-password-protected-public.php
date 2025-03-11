@@ -112,8 +112,9 @@ class PPPTNSE_Public {
 		}
 	}
 
-	public function submit_password_shortcode() {
+	public function submit_password_shortcode($attrs) {
 		
+		$submitName = isset($attrs[0]) ? $attrs[0] : 'Submit';
 		
 		ob_start();
 		?>
@@ -124,7 +125,7 @@ class PPPTNSE_Public {
 		<form method="post" action="">
 			<label for="post_password">Enter Password:</label>
 			<input type="password" name="post_password" id="post_password" required>
-			<input type="submit" value="Submit">
+			<input type="submit" value="<?php echo $submitName ?>">
 			<input type="hidden" name="redirect_url" id="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
 		</form>
 		<?php
