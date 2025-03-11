@@ -114,7 +114,10 @@ class PPPTNSE_Public {
 
 	public function submit_password_shortcode($attrs) {
 		
-		$submitName = isset($attrs[0]) ? $attrs[0] : 'Submit';
+		$attrs = shortcode_atts(array(
+			'submit' => 'Submit',
+		), $attrs);
+		$submitName = $attrs['submit'];
 		
 		ob_start();
 		?>
