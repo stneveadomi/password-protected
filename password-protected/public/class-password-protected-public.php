@@ -123,7 +123,7 @@ class PPPTNSE_Public {
 			<label for="post_password">Enter Password:</label>
 			<input type="password" name="post_password" id="post_password" required>
 			<input type="submit" value="Submit">
-			<input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
+			<input type="hidden" name="redirect_url" id="redirect_url" value="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
 		</form>
 		<?php
 		return ob_get_clean();
