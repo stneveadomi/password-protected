@@ -104,7 +104,9 @@ class PPPTNSE_Public {
 	public function handle_form_submission() {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_password'])) {
 			$post_password = sanitize_text_field($_POST['post_password']);
-			setcookie('password_protected_password', $post_password, time() + 864000, '/');
+			$expiration_time = time() + 864000;
+			setcookie('password_protected_password', $post_password, $expiration_time, '/');
+			setcookie('password_protected_expiration', $expiration_time, $expiration_time, '/');
 			wp_redirect($_POST['redirect_url'], status: 302);
 			exit;
 		}
@@ -117,7 +119,7 @@ class PPPTNSE_Public {
 		?>
 		<?php if (isset($_COOKIE['password_protected_password'])): ?>
 			<p>Password: <?php echo htmlspecialchars($_COOKIE['password_protected_password']); ?></p>
-			<p>Expires: <?php echo date('Y-m-d H:i:s', $_COOKIE['password_protected_password'] + 864000); ?></p>
+			<p>Expires: <?php echo date('Y-m-d H:i:s', $_COOKIE['password_protected_expiration'] + 864000); ?></p>
 		<?php endif; ?>
 		<form method="post" action="">
 			<label for="post_password">Enter Password:</label>
