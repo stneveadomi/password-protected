@@ -106,13 +106,14 @@ class PPPTNSE_Public {
 
 	private function get_passwords_by_page_id($page_id) {
 		global $wpdb;
-		$query = $wpdb->prepare("SELECT password FROM {$wpdb->prefix}password_protected WHERE page_id = %d", $page_id);
+		$query = $wpdb->prepare("SELECT password FROM {$wpdb->prefix}password_protected WHERE post_id = %d", $page_id);
 		return $wpdb->get_col($query);
 	}
 
 	public function check_if_password_needed($template) {
 		if ($this->is_password_check_needed()) {
-			$page_id = get_the_ID();
+			
+			$page_id = $template->ID;
 			$passwords = $this->get_passwords_by_page_id($page_id);
 
 			if (!empty($passwords)) {
